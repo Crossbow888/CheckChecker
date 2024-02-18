@@ -35,11 +35,7 @@ def placepieces(board, pieces):
 
     for colour in pieces:
        for piece in colour:
-        x, y = getrandomcoordinates()
-        if board[(x, y)] == '':
-                board[(x, y)] = piece
-        else:  
-            while board[(x, y)] != '':
+            while True:
                 x, y = getrandomcoordinates()
                 if board[(x, y)] == '':
                     board[(x, y)] = piece
