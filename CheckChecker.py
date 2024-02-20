@@ -54,7 +54,7 @@ def isWhiteKingInCheck(board):
             else: 
                 continue
 
-    isKingInCheck = isKingInCheckOnRank(board, WKing, colour) # add recursion later
+    isKingInCheck = isKingInCheckOnRank(board, WKing, colour) # add subsequent call to next method later
     isKingInCheck = isKingInCheckOnFile(board, WKing, colour)
     isKingInCheck = isKingInCheckOnDiagonal(board, WKing, colour) # to be implemented
 
