@@ -44,6 +44,72 @@ def placepieces(board, pieces):
                     continue
     return board
 
+def isWhiteKingInCheck(board):
+    colour = 'w'
+    isWhiteKinginDanger = False
+    for i in range(1, 9):
+        for j in range(1, 9):
+            if board[(i, j)] == 'K':
+                WKing = (i, j)
+            else: 
+                continue
+
+    isKingInCheck = isKingInCheckOnRank(board, WKing, colour) # add recursion later
+    isKingInCheck = isKingInCheckOnFile(board, WKing, colour)
+    isKingInCheck = isKingInCheckOnDiagonal(board, WKing, colour) # to be implemented
+
+    return isKingInCheck
+
+def isKingInCheckOnRank(board, kingPos, colour):
+    inCheck = False
+    if colour == 'w':
+        #check to left
+        while kingPos[0] - 1 > 0:
+            kingPos[0] -= 1
+            if board[kingPos] == '': 
+                continue
+            elif board[kingPos] != 'q' or board[kingPos] != 'r':
+                return inCheck
+            else:
+                inCheck = True
+                break
+        #check to right
+        while kingPos[0] + 1 <= 8:
+            kingPos[0] += 1
+            if board[kingPos] == '': 
+                continue
+            elif board[kingPos] != 'q' or board[kingPos] != 'r':
+                return inCheck
+            else:
+                inCheck = True
+                break
+    return inCheck
+
+def isKingInCheckOnFile(board, kingPos, colour): 
+    inCheck = False
+    if colour == 'w':
+        #check below
+        while kingPos[1] - 1 > 0:
+            kingPos[0] -= 1
+            if board[kingPos] == '': 
+                continue
+            elif board[kingPos] != 'q' or board[kingPos] != 'r':
+                return inCheck
+            else:
+                inCheck = True
+                break
+        #check above
+        while kingPos[0] + 1 <= 8:
+            kingPos[0] += 1
+            if board[kingPos] == '': 
+                continue
+            elif board[kingPos] != 'q' or board[kingPos] != 'r':
+                return inCheck
+            else:
+                inCheck = True
+                break
+    return inCheck
+
 pieces = generateRandomPieceSet()
 board = generateboard()
 print(placepieces(board, pieces))
